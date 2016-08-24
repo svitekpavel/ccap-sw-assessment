@@ -6,7 +6,7 @@ The user will be able to filter the list of au pairs based on criteria (left sid
 
 #### Notes:
 
-* It should be created using any front end technologies you prefer *(extra points for using Angular 2)*.
+* It should be created using Angular 2.
 * The filters are only accepting single values - they are not multiselect *(extra points if you make them multiselect)*.
 * The search functionality searches in the name and "about" text (the *lorem ipsum* one).
 * Extra points if it is responsive

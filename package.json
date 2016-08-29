@@ -1,13 +1,18 @@
 {
   "name": "find-an-au-pair",
   "version": "0.0.0",
-  "license": "MIT",
+  "description": "Based on the included mockup, create a single page application which will display a list of au pairs and their personal details. The user will be able to filter the list of au pairs based on criteria (left sidebar) as well as search.",
   "angular-cli": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/culturalcare/find-an-au-pair.git"
+  },
+  "homepage": "https://bitbucket.org/culturalcare/find-an-au-pair#readme",
+  "private": true,
   "scripts": {
     "start": "ng serve",
     "lint": "tslint \"src/**/*.ts\""
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "2.0.0-rc.5",
     "@angular/compiler": "2.0.0-rc.5",

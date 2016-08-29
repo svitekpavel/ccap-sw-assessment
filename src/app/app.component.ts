@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'find-an-au-pair',
-	template: '<h1>Find an au pair</h1>'
+	selector: 'app-root',
+	templateUrl: 'app.component.html',
+	styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+	title = 'Find an au pair';
 }

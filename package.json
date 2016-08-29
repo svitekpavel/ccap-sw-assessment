@@ -1,33 +1,33 @@
 {
   "name": "find-an-au-pair",
-  "version": "1.0.0",
-  "description": "Based on the included mockup, create a single page application which will display a list of au pairs and their personal details. The user will be able to filter the list of au pairs based on criteria (left sidebar) as well as search.",
+  "version": "0.0.0",
+  "license": "MIT",
+  "angular-cli": {},
   "scripts": {
-    "clean": "rimraf dist",
-    "prestart": "npm run clean",
-    "postinstall": "typings install",
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" "
+    "start": "ng serve",
+    "lint": "tslint \"src/**/*.ts\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://bitbucket.org/culturalcare/find-an-au-pair.git"
-  },
-  "homepage": "https://bitbucket.org/culturalcare/find-an-au-pair#readme",
+  "private": true,
   "dependencies": {
-    "@angular/common": "^2.0.0-rc.5",
-    "@angular/compiler": "^2.0.0-rc.5",
-    "@angular/core": "^2.0.0-rc.5",
-    "@angular/http": "^2.0.0-rc.5",
-    "@angular/platform-browser": "^2.0.0-rc.5",
-    "@angular/platform-browser-dynamic": "^2.0.0-rc.5",
+    "@angular/common": "2.0.0-rc.5",
+    "@angular/compiler": "2.0.0-rc.5",
+    "@angular/core": "2.0.0-rc.5",
+    "@angular/forms": "0.3.0",
+    "@angular/http": "2.0.0-rc.5",
+    "@angular/platform-browser": "2.0.0-rc.5",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.5",
+    "@angular/router": "3.0.0-rc.1",
     "core-js": "^2.4.0",
-    "rxjs": "^5.0.0-beta.6",
-    "systemjs": "^0.19.27",
-    "zone.js": "^0.6.17"
+    "reflect-metadata": "0.1.3",
+    "rxjs": "5.0.0-beta.6",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "0.6.12"
   },
   "devDependencies": {
-    "concurrently": "^2.2.0",
-    "lite-server": "^2.2.2",
-    "rimraf": "^2.5.4"
+    "angular-cli": "1.0.0-beta.11-webpack.2",
+    "codelyzer": "0.0.26",
+    "ts-node": "1.2.1",
+    "tslint": "3.13.0",
+    "typescript": "^2.0.0"
   }
 }

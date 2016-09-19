@@ -1,6 +1,26 @@
-@import "../assets/css/variables";
+@import '../assets/css/normalize';
+@import '../assets/css/variables';
 
-:host {
-	font-family: "Helvetica Neue", Arial, sans-serif;
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	background-color: $lightgrey;
+	font-family: 'Open Sans', sans-serif;
 	color: $blue;
+	font-size: 14px;
+}
+
+[class^="icon__"], [class*=" icon__"] {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	stroke-width: 0;
+	stroke: currentColor;
+	fill: currentColor;
 }

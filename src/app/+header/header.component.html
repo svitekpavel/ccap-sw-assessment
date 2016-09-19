@@ -1,0 +1,15 @@
+<div class="header-container">
+	<div class="header-logo">
+		<svg class="icon__logo">
+			<use xlink:href="assets/icons/symbols.svg#icon-logo"></use>
+		</svg>
+	</div>
+
+	<nav class="header-nav">
+		<ul class="header-nav__routes-list">
+			<li class="header-nav__route" *ngFor="let route of headerRoutes">
+				<span>{{route}}</span>
+			</li>
+		</ul>
+	</nav>
+</div>

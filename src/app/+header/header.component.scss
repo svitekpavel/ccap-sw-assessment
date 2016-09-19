@@ -1,0 +1,50 @@
+@import '../../assets/css/variables';
+
+:host {
+	display: block;
+	width: 100%;
+	background-color: $blue;
+	box-shadow: 0 1px 6px rgba($blue, .5);
+	position: relative;
+	z-index: 1;
+}
+
+.header-container {
+	@extend %container;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-content: flex-start;
+	align-items: center;
+}
+
+.header-logo {
+	padding: $small-spacing $medium-spacing $small-spacing 0;
+}
+
+.icon__logo {
+	color: $white;
+	width: 104px;
+	height: 30px;
+}
+
+.header-nav {
+	padding: $small-spacing 0 $small-spacing $medium-spacing;
+	flex: 1;
+	text-align: right;
+
+	&__routes-list {
+		margin: 0;
+		padding: 0;
+	}
+
+	&__route {
+		display: inline-block;
+		margin-left: $medium-spacing;
+
+		span {
+			color: $white;
+		}
+	}
+}

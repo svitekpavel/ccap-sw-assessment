@@ -1,4 +1,5 @@
 // COLORS
+$white: #FFF;
 $black: #1A1A1A;
 $blue: #003F60; // navbar
 $lightblue: #0D6FA1; // filters
@@ -7,3 +8,22 @@ $female-icon: #D69690;
 $male-icon: #8DD1CB;
 $cake-icon: #909FD6;
 $star: #C79320; // empty has a blue border and white background
+$lightgrey: #F8F8F8;
+
+$small-spacing: 10px;
+$medium-spacing: 20px;
+$large-spacing: 30px;
+
+%container {
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@mixin clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}

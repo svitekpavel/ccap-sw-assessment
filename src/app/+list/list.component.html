@@ -1,0 +1,108 @@
+<div class="list-container">
+	<div class="list__filters">
+		<h5>FILTERS</h5>
+
+		<!-- FILTERS GO HERE -->
+	</div>
+	<div class="list__results">
+		<h5>SEARCH AU PAIRS</h5>
+
+		<!-- SEARCH BAR GOES HERE -->
+
+		<div class="list__results-list">
+			<div class="list__item" *ngFor="let aupair of aupairs">
+				<!-- HEADER -->
+				<div class="list__item-header">
+					<h4>{{aupair.name}}
+						<small>{{aupair.aupairId}}</small>
+					</h4>
+
+					<img class="flag" [src]="getFlag(aupair.country)">
+
+					<div class="items">
+						<div class="item" *ngIf="aupair.hasVideo">
+							<svg class="video">
+								<use xlink:href="assets/icons/symbols.svg#icon-video"></use>
+							</svg>
+							VIDEO
+						</div>
+
+						<!-- gender icon -->
+						<div *ngIf="aupair.gender == 'M'" class="item">
+							<svg class="male">
+								<use xlink:href="assets/icons/symbols.svg#icon-male"></use>
+							</svg>
+						</div>
+						<div *ngIf="aupair.gender == 'F'" class="item">
+							<svg class="female">
+								<use xlink:href="assets/icons/symbols.svg#icon-female"></use>
+							</svg>
+						</div>
+
+						<div class="item">
+							<svg class="cake">
+								<use xlink:href="assets/icons/symbols.svg#icon-age"></use>
+							</svg>
+							{{aupair.age}}
+						</div>
+
+					</div>
+				</div>
+				<!--CONTENT -->
+				<div class="list__item-content">
+					<!-- Details and About -->
+					<div class="description">
+						<!-- Details -->
+						<div class="details">
+							<div class="detail">
+								<div class="name">
+									Country
+								</div>
+								<div class="value">
+									{{aupair.country}}
+								</div>
+							</div>
+							<div class="detail">
+								<div class="name">
+									English Level
+								</div>
+								<div class="value">
+									<!-- STAR RATING GOES HERE-->
+								</div>
+							</div>
+							<div class="detail">
+								<div class="name">
+									Preferred arrival
+								</div>
+								<div class="value">
+									{{aupair.preferredArrival | date: 'MMMM y'}}
+								</div>
+							</div>
+							<div class="detail">
+								<div class="name">
+									Swimming skills
+								</div>
+								<div class="value">
+									{{aupair.swimmingSkills}}
+								</div>
+							</div>
+						</div>
+						<!--ABOUT-->
+						<div class="about">
+							<div class="quote">
+								<svg class="icon-Quote">
+									<use xlink:href="assets/icons/symbols.svg#icon-quote"></use>
+								</svg>
+							</div>
+							<p>{{aupair.about}}</p>
+						</div>
+					</div>
+					<!--Photo-->
+					<div class="photo">
+						<img [src]="aupair.picture">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

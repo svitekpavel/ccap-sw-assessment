@@ -8,11 +8,11 @@ Based on the included mockup, create a single page application which will displa
 ### Notes:
 
 * It should be developed using Angular 2. `angular-cli` has been included to help get started, but the choice is up to you on how you prefer to scaffold the application
-* The filters are only accepting single values - they are not multiselect *(extra points if you make them multiselect)*
+* The filters are only accepting single values - they don't have to be multiselect
 * The search functionality searches in the name and "about" text (the *lorem ipsum* one)
 * Search input and filters are working together in an **AND** relationship, meaning that if a filter is selected, the search will take that into account, and vice-versa
-* Extra points if it is responsive
-* No need to worry about cross-browser issues - will be viewed in Chrome
+* No need to be responsive
+* No need to be cross-browser compatible - will be viewed in Chrome
 
 
 ### Included files:

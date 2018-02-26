@@ -7,5 +7,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
 	encapsulation: ViewEncapsulation.None, // Use to disable CSS Encapsulation for this component
 })
 export class AppComponent {
-	headerRoutes = ['Find an Au Pair', 'Log Out'];
+	public headerRoutes = ['Find an Au Pair', 'Log Out'];
 }

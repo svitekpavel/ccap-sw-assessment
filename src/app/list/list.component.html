@@ -2,31 +2,24 @@
 	<div class="list__filters">
 		<h5>FILTERS</h5>
 
+		<!--TODO-->
 		<!-- FILTERS GO HERE -->
 	</div>
 	<div class="list__results">
 		<h5>SEARCH AU PAIRS</h5>
 
+		<!--TODO-->
 		<!-- SEARCH BAR GOES HERE -->
 
 		<div class="list__results-list">
 			<div class="list__item" *ngFor="let aupair of aupairs">
 				<!-- HEADER -->
 				<div class="list__item-header">
-					<h4>{{aupair.name}}
-						<small>{{aupair.aupairId}}</small>
-					</h4>
+					<h4>{{aupair.name}}</h4>
 
 					<img class="flag" [src]="getFlag(aupair.country)">
 
 					<div class="items">
-						<div class="item" *ngIf="aupair.hasVideo">
-							<svg class="video">
-								<use xlink:href="assets/icons/symbols.svg#icon-video"></use>
-							</svg>
-							VIDEO
-						</div>
-
 						<!-- gender icon -->
 						<div *ngIf="aupair.gender == 'M'" class="item">
 							<svg class="male">
@@ -67,23 +60,8 @@
 									English Level
 								</div>
 								<div class="value">
+									<!--TODO-->
 									<!-- STAR RATING GOES HERE-->
-								</div>
-							</div>
-							<div class="detail">
-								<div class="name">
-									Preferred arrival
-								</div>
-								<div class="value">
-									{{aupair.preferredArrival | date: 'MMMM y'}}
-								</div>
-							</div>
-							<div class="detail">
-								<div class="name">
-									Swimming skills
-								</div>
-								<div class="value">
-									{{aupair.swimmingSkills}}
 								</div>
 							</div>
 						</div>

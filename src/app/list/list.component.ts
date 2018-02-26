@@ -1,9 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
-import { IAupair } from './list.interface';
+import { Aupair } from './list.interface';
 
 @Component({
 	selector: 'app-list',
@@ -11,8 +10,11 @@ import { IAupair } from './list.interface';
 	styleUrls: ['list.component.scss'],
 })
 export class ListComponent implements OnInit {
-	private aupairs: IAupair[];
+	private aupairs: Aupair[];
 	private countries: any;
+
+	constructor(private http: HttpClient) {
+	}
 
 	public getFlag(country: string) {
 		let code;
@@ -52,34 +54,17 @@ export class ListComponent implements OnInit {
 		return `http://www.geonames.org/flags/x/${code}.gif`;
 	}
 
-	constructor(private http: Http) {
+	public ngOnInit() {
+		//
 	}
 
 	private getAllAuPairs(): Observable<any> {
-		return this.http.get('app/data.json')
-			.map(r => r.json())
-			.map(a => {
-				this.aupairs = a.map(r => {
-					return r;
-				});
-
-				return this.aupairs;
-			});
+		// fetch aupairs from the json file
+		return null;
 	}
 
 	private getAvailableCountries(): Observable<string[]> {
-		return this.getAllAuPairs().map(r => {
-			return r.reduce((countries: string[], aupair: IAupair) => {
-				if (countries.indexOf(aupair.country) < 0) {
-					countries.push(aupair.country);
-				}
-				return countries;
-			}, []);
-		});
-	}
-
-	ngOnInit() {
-		this.getAllAuPairs().subscribe(a => this.aupairs = a);
-		this.getAvailableCountries().subscribe(a => this.countries = a);
+		// the countries to be used in the filters
+		return null;
 	}
 }

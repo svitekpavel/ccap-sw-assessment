@@ -5,8 +5,6 @@ $header-video-height: 10px;
 $header-female-height: 20px;
 $header-cake-height: 15px;
 $header-male-height: 20px;
-$header-flag-width: 30px;
-$header-flag-height: 18px;
 
 :host {
 	display: block;
@@ -26,124 +24,7 @@ $header-flag-height: 18px;
 
 	.list__item-header {
 		height: $header-height;
-		border-bottom: 1px solid $lightgrey;
+		border-bottom: 1px solid $grey;
 		@include clearfix();
-
-		> h4 {
-			height: $header-height;
-			display: block;
-			float: left;
-			color: $lightblue;
-			font-size: 18px;
-			line-height: $header-height;
-			font-weight: normal;
-			> small {
-				height: $header-height;
-				padding-left: $small-spacing;
-				color: $lightblue;
-				line-height: $header-height;
-			}
-		}
-
-		> .flag {
-			width: $header-flag-width;
-			height: $header-flag-height;
-			display: block;
-			float: left;
-			margin-left: $small-spacing;
-			margin-top: ($header-height - $header-flag-height) / 2;
-
-		}
-
-		> .items {
-			height: $header-height;
-			display: block;
-			float: right;
-			vertical-align: middle;
-
-			> .item {
-				height: $header-height;
-				display: block;
-				float: left;
-				margin: auto 0;
-				padding: 0 $small-spacing;
-				line-height: $header-height;
-				color: $lightblue;
-				border-left: 1px solid $lightgrey;
-
-				> svg {
-					padding: 0 3px;
-
-					&.video {
-						height: $header-video-height;
-						margin-top: ($header-height - $header-video-height) / 2;
-						fill: $teal;
-					}
-
-					&.male {
-						height: $header-male-height;
-						margin-top: ($header-height - $header-male-height) / 2;
-						fill: $male-icon;
-					}
-
-					&.female {
-						height: $header-female-height;
-						margin-top: ($header-height - $header-female-height) / 2;
-						fill: $female-icon;
-					}
-
-					&.cake {
-						height: $header-cake-height;
-						margin-top: ($header-height - $header-cake-height) / 2;
-						fill: $cake-icon;
-					}
-				}
-			}
-		}
-	}
-
-	.list__item-content {
-		width: 100%;
-		display: table;
-
-		> .description {
-			width: 100%;
-			display: table-cell;
-			vertical-align: top;
-			padding-right: 30px;
-
-			> .details {
-				width: 100%;
-				display: block;
-				> .detail {
-				}
-			}
-			> .about {
-				display: table;
-				padding-top: 30px;
-				> .quote {
-					width: 45px;
-					display: table-cell;
-					vertical-align: top;
-
-					> svg {
-						width: 100%;
-					}
-				}
-				> p {
-					margin-left: 30px;
-				}
-			}
-		}
-		> .photo {
-			width: 135px;
-			min-width: 135px;
-			display: table-cell;
-			vertical-align: top;
-
-			> img {
-				width: 100%;
-			}
-		}
 	}
 }

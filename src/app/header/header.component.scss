@@ -17,34 +17,15 @@
 	justify-content: flex-start;
 	align-content: flex-start;
 	align-items: center;
-}
-
-.header-logo {
 	padding: $small-spacing $medium-spacing $small-spacing 0;
 }
 
-.icon__logo {
-	color: $white;
-	width: 104px;
+.header-logo {
+	width: 64px;
 	height: 30px;
-}
 
-.header-nav {
-	padding: $small-spacing 0 $small-spacing $medium-spacing;
-	flex: 1;
-	text-align: right;
-
-	&__routes-list {
-		margin: 0;
-		padding: 0;
-	}
-
-	&__route {
-		display: inline-block;
-		margin-left: $medium-spacing;
-
-		span {
-			color: $white;
-		}
+	img {
+		width: inherit;
+		height: inherit;
 	}
 }

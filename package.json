@@ -1,17 +1,12 @@
 {
-  "name": "find-an-au-pair",
+  "name": "search-star-wars",
   "version": "0.0.0",
-  "description": "Based on the included mockup, create a single page application which will display a list of au pairs and their personal details. The user will be able to filter the list of au pairs based on criteria (left sidebar) as well as search.",
+  "description": "",
   "angular-cli": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://bitbucket.org/culturalcare/find-an-au-pair.git"
-  },
-  "homepage": "https://bitbucket.org/culturalcare/find-an-au-pair#readme",
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 3212",
     "build": "ng build",
     "build:dev": "npm run build -- --dev",
     "build:prod": "npm run build -- --prod",

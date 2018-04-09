@@ -8,7 +8,8 @@ You can use the Star Wars API: https://swapi.co/api/people/
 ## Functionality requirements:
 
 - The user can select multiple filters (in an **OR** relationship between them)
-- The search functionality searches for the name of the organism
+- The filters should be checkboxes/radios/dropdpowns - no text inputs - the options can be derived from the endpoint response
+- The search functionality is a text input, and searches for the name of the organism
 - Search input and filters are working together in an **AND** relationship, meaning that if a filter is selected, the search will take that into account, and vice-versa
 - No need to be responsive (CSS)
 - No need to be cross-browser compatible - will be viewed in Chrome
@@ -21,9 +22,10 @@ You can use the Star Wars API: https://swapi.co/api/people/
 - No helper libraries/packages (Bootstrap, Moment.js etc.) - we support Redux/Ngrx though
 - Being able to support your decisions - explain why you chose a specific way, when asked
 
-#### Extra points
+#### Extra points (nice to have)
 
-Paginate the results (10 results per page)
+- Paginate the results (10 results per page)
+- Generate the filter options from the API response, programmatically (e.g. a dropdown for the "hair_color", with all the values that the response contains)
 
 ## Included files:
 

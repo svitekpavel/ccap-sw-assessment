@@ -1,29 +1,69 @@
 <div class="list-container">
 	<div class="list__filters">
-		<h5>FILTER</h5>
+		<h5 class="list__filters-title">FILTER</h5>
 
 		<!--TODO-->
 		<!-- FILTERS GO HERE -->
 	</div>
+	<div class="list__search">
+		<h5 class="list__search-title">SEARCH AU PAIRS</h5>
+		<input #query (keyup.enter)="querySubject.next(query.value)" type="text" class="list__search-input" />
+		<button (click)="querySubject.next(query.value)" class="list__search-button">
+			<img alt="search" src="assets/icons/svgs/search.svg" />
+		</button>
+		<div *ngIf="!loaded" class="list__results-count">Loading...</div>
+
+		<div *ngIf="loaded && people.length === 0" class="list__results-count">No results...</div>
+
+		<div *ngIf="loaded && people.length > 0" class="list__results-count">Found {{people.length}} {{people.length > 1 ? 'matches' : 'match' }}</div>
+	</div>
 	<div class="list__results">
-		<h5>SEARCH</h5>
 
-		<!--TODO-->
-		<!-- SEARCH BAR GOES HERE -->
+		<div *ngIf="loaded && people.length > 0" class="list__results-list">
 
-		<div class="list__results-list">
-			<div class="list__item" *ngFor="let organism of organisms">
+			<div class="list__item" *ngFor="let person of people">
 
 				<!-- HEADER -->
 				<div class="list__item-header">
-					<!--TODO-->
-					<!-- HEADER GO HERE -->
+					<h6 class="list__item-header-title">
+						<a href="{{person.url}}">{{ person.name }}</a>
+					</h6>
+					<div class="list__item-header-gender" [innerHTML]="person.gender | gender"></div>
+					<div class="list__item-header-birthyear" [innerHTML]="person.birth_year | galacticYear"></div>
 				</div>
 
-				<div class="list__item-content">
-					<!--TODO-->
-					<!-- CONTENT GO HERE -->
-				</div>
+				<ul class="list__item-content">
+					<li class="list__item-content-spec">
+						<span class="item-content-spec__header">
+							Height
+						</span>
+						{{ person.height | units:'cm' }}
+					</li>
+					<li class="list__item-content-spec">
+						<span class="item-content-spec__header">
+							Mass
+						</span>
+						{{ person.mass | units:'kg'}}
+					</li>
+					<li class="list__item-content-spec">
+						<span class="item-content-spec__header">
+							Hair Color
+						</span>
+						{{ person.hair_color | titlecase }}
+					</li>
+					<li class="list__item-content-spec">
+						<span class="item-content-spec__header">
+							Skin Color
+						</span>
+						{{ person.skin_color | titlecase }}
+					</li>
+					<li class="list__item-content-spec">
+						<span class="item-content-spec__header">
+							Eye Color
+						</span>
+						{{ person.eye_color | titlecase }}
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

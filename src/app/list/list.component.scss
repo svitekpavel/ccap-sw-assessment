@@ -1,4 +1,4 @@
-@import '../../assets/css/variables';
+@import "../../assets/css/variables";
 
 $header-height: 54px;
 $header-video-height: 10px;
@@ -9,6 +9,16 @@ $header-male-height: 20px;
 :host {
 	display: block;
 	width: 100%;
+}
+
+.list-container {
+	display: grid;
+	grid-template-columns: 171px auto;
+	grid-template-rows: min-content auto;
+	grid-template-areas:
+		"filter		search"
+		"filter		results";
+	grid-gap: $large-spacing;
 }
 
 .list-container {
@@ -25,6 +35,110 @@ $header-male-height: 20px;
 	.list__item-header {
 		height: $header-height;
 		border-bottom: 1px solid $grey;
-		@include clearfix();
+		display: grid;
+		grid-template-columns: auto min-content 100px;
+		align-items: stretch;
 	}
+
+	.list__item-header-title,
+	.list__item-header-title :link {
+		font-weight: 400;
+		padding: $medium-spacing 0 $medium-spacing $medium-spacing;
+		font-size: 18px;
+		color: $blue;
+		flex: 4 0;
+		margin: 0;
+	}
+
+	.list__item-header-gender,
+	.list__item-header-birthyear {
+		display: flex;
+		align-items: center;
+		justify-self: center;
+		padding: $medium-spacing;
+		color: $medgrey;
+		font-weight: 200;
+	}
+
+	.list__item-header-gender {
+		border-right: 1px solid $grey;
+		color: $blue;
+		font-weight: 900;
+	}
+
+	.list__item-content {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+		list-style-type: none;
+		padding: 0;
+		padding-left: $medium-spacing;
+		margin: 0;
+		width: 100%;
+	}
+	.list__item-content-spec {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-around;
+		padding: $medium-spacing;
+		flex-basis: 20%;
+	}
+	.item-content-spec__header {
+		font-size: 14px;
+		color: $medgrey;
+		text-decoration: underline;
+		display: block;
+		font-weight: 200;
+	}
+}
+
+.list__filters {
+	grid-area: filter;
+}
+
+.list__filters-title {
+	margin: $large-spacing 0 $small-spacing 0;
+	font-weight: 500;
+}
+
+.list__search {
+	grid-area: search;
+	display: grid;
+	grid-template-columns: auto 60px;
+	grid-template-rows: repeat(3, min-content);
+}
+
+.list__search-title {
+	grid-column: span 2;
+	margin: $large-spacing 0 $small-spacing 0;
+	font-weight: 500;
+}
+
+.list__search-input,
+.list__search-button {
+	padding: $small-spacing;
+	margin: 0;
+}
+
+.list__search-input {
+	border: 1px solid $grey;
+	border-right: none;
+}
+
+.list__search-button {
+	background: $teal;
+	border: none;
+}
+
+.list__results {
+	grid-area: results;
+}
+
+.list__results-count {
+	padding: $small-spacing;
+	padding-left: 0;
+	grid-column: span 2;
+	font-size: 12px;
+	color: $medgrey;
+	margin: $medium-spacing 0 $small-spacing 0;
 }

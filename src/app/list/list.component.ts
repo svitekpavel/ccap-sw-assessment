@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { PeopleService } from "../services/people.service";
 import { Organism } from "../shared/models/organism.interface";
+import {
+	FilterList,
+	FilterListOption
+} from "../shared/models/filter.interface";
 import { TitleCasePipe } from "@angular/common";
 import { UnitsPipe } from "../shared/pipes/units.pipe";
 import { GenderPipe } from "../shared/pipes/gender.pipe";
@@ -16,8 +20,10 @@ import "rxjs/add/operator/debounceTime";
 })
 export class ListComponent implements OnInit {
 	people: Organism[] = [];
-	querySubject = new Subject<string>();
 	loaded: boolean = false;
+
+	querySubject = new Subject<string>();
+	filterSubject = new Subject<FilterList[]>();
 
 	constructor(private peopleService: PeopleService) {}
 

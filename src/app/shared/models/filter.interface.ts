@@ -1,4 +1,8 @@
-export interface Filter {
+export interface FilterListOption {
+	value: string;
+	active: boolean;
+}
+export interface FilterList {
 	propertyKey: string;
-	settings: Array<{ value: string; active: boolean }>
+	settings: FilterListOption[];
 }

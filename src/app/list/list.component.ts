@@ -28,6 +28,9 @@ export class ListComponent implements OnInit {
 	constructor(private peopleService: PeopleService) {}
 
 	ngOnInit() {
+		/**
+		 * Subscribe to the peopleService to receive people
+		 */
 		this.peopleService.getAllPeople().subscribe(
 			people => {
 				console.log("Data received from Subject...");
@@ -44,6 +47,7 @@ export class ListComponent implements OnInit {
 			error => console.error(error)
 		);
 
+		// Subscribe to the querySubject to the searchPeople observable
 		this.querySubject
 			.debounceTime(500)
 			.subscribe(queryString => this.searchPeople(queryString));

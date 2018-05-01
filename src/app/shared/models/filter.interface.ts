@@ -1,8 +1,10 @@
-export interface FilterListOption {
-	value: string;
-	active: boolean;
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+
+export interface FilterAttributeOption {
+	valueKey: string;
+	status: BehaviorSubject<boolean>;
 }
-export interface FilterList {
-	propertyKey: string;
-	settings: FilterListOption[];
+export interface FilterAttribute {
+	attributeKey: string;
+	values: FilterAttributeOption[];
 }

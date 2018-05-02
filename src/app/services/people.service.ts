@@ -10,6 +10,9 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/filter";
 import "rxjs/add/observable/of";
 import "rxjs/add/observable/from";
+import "rxjs/add/operator/distinct";
+import "rxjs/add/operator/scan";
+import "rxjs/add/operator/last";
 import {
 	FilterAttribute,
 	FilterAttributeOption
@@ -20,17 +23,13 @@ export class PeopleService {
 	allPeopleSubject = new BehaviorSubject<Organism[]>([]);
 	allFiltersSubject = new Subject<Organism>();
 
-	filters = {
-		height: {
-			/*'172': new BehaviorSubject<boolean>(false),
-			'170': new BehaviorSubject<boolean>(false),
-			'155': new BehaviorSubject<boolean>(false),*/
-		},
-		mass: {},
-		hair_color: {},
-		eye_color: {},
-		skin_color: {},
-		gender: {}
+	attributeFilters = {
+		height: this.newAttributeFilterSubject(),
+		mass: this.newAttributeFilterSubject(),
+		hair_color: this.newAttributeFilterSubject(),
+		eye_color: this.newAttributeFilterSubject(),
+		skin_color: this.newAttributeFilterSubject(),
+		gender: this.newAttributeFilterSubject()
 	};
 
 	constructor(private apiService: ApiService) {
@@ -43,11 +42,46 @@ export class PeopleService {
 		/**
 		 * Subscribe to the API and process people to Filters
 		 */
-		this.apiService.getAllPeople();
+		this.generateFilterValues();
+		this.attributeFilters["height"].subscribe();
+	}
+
+	newAttributeFilterSubject() {
+		return new Subject<string>()
+			.distinct()
+			.map(attributeValue => {
+				const newOption: FilterAttributeOption = {
+					value: attributeValue,
+					isActiveFilter: new BehaviorSubject<boolean>(false)
+				};
+				return newOption;
+			})
+			.scan((acc, value) => [...acc, value], []);
+	}
+	generateFilterValues(): void {
+		console.info("FILTER VALUE GENERATION");
+		this.allPeopleSubject.asObservable().subscribe(
+			people => {
+				if (people.length > 0) {
+					console.info("People received, filtering...");
+					people.forEach(person => {
+						Object.keys(this.attributeFilters).forEach(key => {
+							this.attributeFilters[key].next(person[key]);
+						});
+					});
+				}
+			},
+			error => console.error(error),
+			() => console.log("Value filter complete")
+		);
 	}
 
 	getAllPeople(): Observable<Organism[]> {
 		return this.allPeopleSubject.asObservable();
+	}
+
+	getFilterOptions(): any {
+		return this.attributeFilters;
 	}
 
 	searchPeople(query: string): Observable<Organism[]> {

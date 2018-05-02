@@ -1,8 +1,8 @@
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 export interface FilterAttributeOption {
-	valueKey: string;
-	status: BehaviorSubject<boolean>;
+	value: string;
+	isActiveFilter: BehaviorSubject<boolean>;
 }
 export interface FilterAttribute {
 	attributeKey: string;

@@ -2,14 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { PeopleService } from "../services/people.service";
 import { Organism } from "../shared/models/organism.interface";
 import {
-	FilterList,
-	FilterListOption
+	FilterAttribute,
+	FilterAttributeOption
 } from "../shared/models/filter.interface";
 import { TitleCasePipe } from "@angular/common";
 import { UnitsPipe } from "../shared/pipes/units.pipe";
 import { GenderPipe } from "../shared/pipes/gender.pipe";
 import { GalacticYearPipe } from "../shared/pipes/galactic-year.pipe";
 import { Subject } from "rxjs/Subject";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import "rxjs/add/operator/debounceTime";
 
 @Component({
@@ -23,7 +24,7 @@ export class ListComponent implements OnInit {
 	loaded: boolean = false;
 
 	querySubject = new Subject<string>();
-	filterSubject = new Subject<FilterList[]>();
+	filterSubject = new BehaviorSubject<FilterAttribute[]>([]);
 
 	constructor(private peopleService: PeopleService) {}
 
@@ -46,6 +47,10 @@ export class ListComponent implements OnInit {
 			},
 			error => console.error(error)
 		);
+
+		this.peopleService
+			.getFilterOptions()
+			["height"].subscribe(this.filterSubject);
 
 		// Subscribe to the querySubject to the searchPeople observable
 		this.querySubject

@@ -142,3 +142,44 @@ $header-male-height: 20px;
 	color: $medgrey;
 	margin: $medium-spacing 0 $small-spacing 0;
 }
+
+.list__filters-filter {
+	border: 1px solid $grey;
+	margin: $small-spacing 0;
+
+	&:focus > .list__filters-filter__header {
+		background: $blue;
+		color: white;
+	}
+}
+
+.list__filters-filter__header {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid $grey;
+	padding: $small-spacing;
+}
+
+.list__filters-filter__options {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	max-height: 0;
+	overflow: hidden;
+	box-sizing: border-box;
+	transition: max-height 100ms ease-in-out;
+}
+
+.list__filters-filter:focus-within .list__filters-filter__options,
+.list__filters-filter:hover .list__filters-filter__options {
+	max-height: 80vh;
+	overflow-y: scroll;
+}
+
+.list__filters__option {
+	padding: $small-spacing;
+
+	&:focus-within {
+		background: $grey;
+	}
+}

@@ -2,8 +2,66 @@
 	<div class="list__filters">
 		<h5 class="list__filters-title">FILTER</h5>
 
-		<!--TODO-->
-		<!-- FILTERS GO HERE -->
+		<div class="list__filters-filter">
+			<button class="list__filters-filter__header">
+				<label class="list__filters-filter__label">Height</label>
+				<img alt="expand" class="list__filters-filter__icon" src="assets/icons/svgs/triangle.svg" />
+			</button>
+			<ul class="list__filters-filter__options">
+				<li *ngFor="let option of sortOptions(heightOptionsSubject)" class="list__filters__option">
+					<input type="checkbox" id="height172" name="172" value="172">
+					<label for="subscribeNews">{{option.value}}</label>
+				</li>
+			</ul>
+		</div>
+		<div class="list__filters-filter">
+			<div class="list__filters-filter__header">
+				<label class="list__filters-filter__label">Mass</label>
+				<img alt="expand" class="list__filters-filter__icon" src="assets/icons/svgs/triangle.svg" />
+			</div>
+			<ul class="list__filters-filter__options">
+				<li *ngFor="let option of sortOptions(massOptionsSubject)" class="list__filters__option">
+					<input type="checkbox" id="height172" name="172" value="172">
+					<label for="subscribeNews">{{option.value}}</label>
+				</li>
+			</ul>
+		</div>
+		<div class="list__filters-filter">
+			<div class="list__filters-filter__header">
+				<label class="list__filters-filter__label">Hair Color</label>
+				<img alt="expand" class="list__filters-filter__icon" src="assets/icons/svgs/triangle.svg" />
+			</div>
+			<ul class="list__filters-filter__options">
+				<li *ngFor="let option of sortOptions(hairColorOptionsSubject)" class="list__filters__option">
+					<input type="checkbox" id="height172" name="172" value="172">
+					<label for="subscribeNews">{{option.value}}</label>
+				</li>
+			</ul>
+		</div>
+		<div class="list__filters-filter">
+			<div class="list__filters-filter__header">
+				<label class="list__filters-filter__label">Skin Color</label>
+				<img alt="expand" class="list__filters-filter__icon" src="assets/icons/svgs/triangle.svg" />
+			</div>
+			<ul class="list__filters-filter__options">
+				<li *ngFor="let option of sortOptions(skinColorOptionsSubject)" class="list__filters__option">
+					<input type="checkbox" id="height172" name="172" value="172">
+					<label for="subscribeNews">{{option.value}}</label>
+				</li>
+			</ul>
+		</div>
+		<div class="list__filters-filter">
+			<div class="list__filters-filter__header">
+				<label class="list__filters-filter__label">Gender</label>
+				<img alt="expand" class="list__filters-filter__icon" src="assets/icons/svgs/triangle.svg" />
+			</div>
+			<ul class="list__filters-filter__options">
+				<li *ngFor="let option of sortOptions(genderOptionsSubject)" class="list__filters__option">
+					<input type="checkbox" id="height172" name="172" value="172">
+					<label for="subscribeNews">{{option.value}}</label>
+				</li>
+			</ul>
+		</div>
 	</div>
 	<div class="list__search">
 		<h5 class="list__search-title">SEARCH AU PAIRS</h5>

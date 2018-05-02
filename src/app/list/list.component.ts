@@ -25,6 +25,11 @@ export class ListComponent implements OnInit {
 
 	querySubject = new Subject<string>();
 	filterSubject = new BehaviorSubject<FilterAttribute[]>([]);
+	heightOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	massOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	hairColorOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	skinColorOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	genderOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
 
 	constructor(private peopleService: PeopleService) {}
 
@@ -50,7 +55,19 @@ export class ListComponent implements OnInit {
 
 		this.peopleService
 			.getFilterOptions()
-			["height"].subscribe(this.filterSubject);
+			["height"].subscribe(this.heightOptionsSubject);
+		this.peopleService
+			.getFilterOptions()
+			["mass"].subscribe(this.massOptionsSubject);
+		this.peopleService
+			.getFilterOptions()
+			["hair_color"].subscribe(this.hairColorOptionsSubject);
+		this.peopleService
+			.getFilterOptions()
+			["skin_color"].subscribe(this.skinColorOptionsSubject);
+		this.peopleService
+			.getFilterOptions()
+			["gender"].subscribe(this.genderOptionsSubject);
 
 		// Subscribe to the querySubject to the searchPeople observable
 		this.querySubject
@@ -58,6 +75,15 @@ export class ListComponent implements OnInit {
 			.subscribe(queryString => this.searchPeople(queryString));
 	}
 
+	sortOptions(subject) {
+		return subject.getValue().sort((a, b) => {
+			console.log(`Comparing ${a.value} and ${b.value}...`);
+			return a.value.localeCompare(b.value, undefined, {
+				numeric: true,
+				sensitivity: "base"
+			});
+		});
+	}
 	searchPeople(queryString: string) {
 		console.info(`Search query received: '${queryString}'`);
 		this.peopleService.searchPeople(queryString).subscribe(

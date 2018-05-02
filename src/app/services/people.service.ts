@@ -12,7 +12,7 @@ import "rxjs/add/observable/of";
 import "rxjs/add/observable/from";
 import "rxjs/add/operator/distinct";
 import "rxjs/add/operator/scan";
-import "rxjs/add/operator/last";
+import "rxjs/add/operator/toArray";
 import {
 	FilterAttribute,
 	FilterAttributeOption

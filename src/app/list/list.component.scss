@@ -147,10 +147,25 @@ $header-male-height: 20px;
 	border: 1px solid $grey;
 	margin: $small-spacing 0;
 
-	&:focus > .list__filters-filter__header {
-		background: $blue;
-		color: white;
+	&:focus-within,
+	&:hover {
+		& > .list__filters-filter__header {
+			background: $blue;
+			color: white;
+		}
+
+		& > .list__filters-filter__header > .list__filters-filter__icon {
+			background: white;
+		}
 	}
+}
+
+.list__filters-filter__icon {
+	background: black;
+	opacity: 0.8;
+	width: 8px;
+	height: 6px;
+	mask-image: url("../../assets/icons/svgs/triangle.svg");
 }
 
 .list__filters-filter__header {
@@ -162,6 +177,12 @@ $header-male-height: 20px;
 	border-bottom: 1px solid #d9d9d9;
 	padding: 8px;
 	width: 100%;
+	color: black;
+	opacity: 0.8;
+}
+
+.list__filters-filter__label {
+	color: inherit;
 }
 
 .list__filters-filter__options {
@@ -176,13 +197,21 @@ $header-male-height: 20px;
 }
 
 .list__filters-filter {
-	&:focus-within .list__filters-filter__options,
-	&:hover .list__filters-filter__options {
-		overflow-y: scroll;
+	&:focus-within,
+	&:hover {
+		& .list__filters-filter__options,
+		& .list__filters-filter__options {
+			overflow-y: scroll;
 
-		& .list__filters__option {
-			max-height: 100px;
-			padding: $small-spacing;
+			& .list__filters__option {
+				max-height: 100px;
+				padding: $small-spacing;
+			}
+		}
+
+		& > .list__filters-filter__header {
+			background-color: $blue;
+			color: $lightgrey;
 		}
 	}
 }

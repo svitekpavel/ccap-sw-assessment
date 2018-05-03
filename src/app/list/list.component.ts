@@ -1,50 +1,50 @@
-import { Component, OnInit } from "@angular/core";
-import { PeopleService } from "../services/people.service";
-import { Organism } from "../shared/models/organism.interface";
+import { TitleCasePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/skipWhile';
+import 'rxjs/add/operator/withLatestFrom';
+import 'rxjs/add/operator/zip';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { from } from 'rxjs/observable/from';
+import { Subject } from 'rxjs/Subject';
+import { PeopleService } from '../services/people.service';
 import {
 	FilterAttribute,
 	FilterAttributeOption
-} from "../shared/models/filter.interface";
-import { TitleCasePipe } from "@angular/common";
-import { UnitsPipe } from "../shared/pipes/units.pipe";
-import { GenderPipe } from "../shared/pipes/gender.pipe";
-import { GalacticYearPipe } from "../shared/pipes/galactic-year.pipe";
-import { Subject } from "rxjs/Subject";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { from } from "rxjs/observable/from";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/withLatestFrom";
-import "rxjs/add/operator/skipWhile";
-import "rxjs/add/operator/zip";
+} from '../shared/models/filter.interface';
+import { Organism } from '../shared/models/organism.interface';
+import { GalacticYearPipe } from '../shared/pipes/galactic-year.pipe';
+import { GenderPipe } from '../shared/pipes/gender.pipe';
+import { UnitsPipe } from '../shared/pipes/units.pipe';
 
 @Component({
-	selector: "app-list",
-	templateUrl: "list.component.html",
-	styleUrls: ["list.component.scss"],
+	selector: 'app-list',
+	templateUrl: 'list.component.html',
+	styleUrls: ['list.component.scss'],
 	providers: [PeopleService]
 })
 export class ListComponent implements OnInit {
-	people: Organism[] = [];
-	loaded: boolean = false;
+	private people: Organism[] = [];
+	private loaded: boolean = false;
 
-	querySubject = new Subject<string>();
-	filterSubject = new BehaviorSubject<FilterAttribute[]>([]);
-	heightOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
-	massOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
-	hairColorOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
-	skinColorOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
-	eyeColorOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
-	genderOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	private querySubject = new Subject<string>();
+	private filterSubject = new BehaviorSubject<FilterAttribute[]>([]);
+	private heightOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	private massOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	private hairColorOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	private skinColorOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	private eyeColorOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
+	private genderOptionsSubject = new BehaviorSubject<FilterAttributeOption[]>([]);
 
 	constructor(private peopleService: PeopleService) {}
 
-	ngOnInit() {
+	public ngOnInit() {
 		/**
 		 * Subscribe to the peopleService to receive people
 		 */
 		this.peopleService.getAllPeople().subscribe(
-			people => {
-				console.log("Data received from Subject...");
+			(people) => {
+				console.log('Data received from Subject...');
 				console.table(people);
 				this.people = people;
 				/**
@@ -55,67 +55,63 @@ export class ListComponent implements OnInit {
 					this.loaded = true;
 				}
 			},
-			error => console.error(error)
+			(error) => console.error(error)
 		);
 
 		this.peopleService
 			.getFilterOptions()
-			["height"].subscribe(this.heightOptionsSubject);
+			['height'].subscribe(this.heightOptionsSubject);
 		this.peopleService
 			.getFilterOptions()
-			["mass"].subscribe(this.massOptionsSubject);
+			['mass'].subscribe(this.massOptionsSubject);
 		this.peopleService
 			.getFilterOptions()
-			["hair_color"].subscribe(this.hairColorOptionsSubject);
+			['hair_color'].subscribe(this.hairColorOptionsSubject);
 		this.peopleService
 			.getFilterOptions()
-			["skin_color"].subscribe(this.skinColorOptionsSubject);
+			['skin_color'].subscribe(this.skinColorOptionsSubject);
 		this.peopleService
 			.getFilterOptions()
-			["eye_color"].subscribe(this.eyeColorOptionsSubject);
+			['eye_color'].subscribe(this.eyeColorOptionsSubject);
 		this.peopleService
 			.getFilterOptions()
-			["gender"].subscribe(this.genderOptionsSubject);
+			['gender'].subscribe(this.genderOptionsSubject);
 
 		// Subscribe to the querySubject to the searchPeople observable
 		this.querySubject
 			.debounceTime(500)
-			.subscribe(queryString => this.searchPeople(queryString));
+			.subscribe((queryString) => this.searchPeople(queryString));
 	}
-
-	sortOptions(subject) {
-		return subject.getValue().sort((a, b) => {
-			//console.log(`Comparing ${a.value} and ${b.value}...`);
-			return a.value.localeCompare(b.value, undefined, {
-				numeric: true,
-				sensitivity: "base"
-			});
-		});
-	}
-	searchPeople(queryString: string) {
+	public searchPeople(queryString: string) {
 		console.info(`Search query received: '${queryString}'`);
 		this.peopleService.searchPeople(queryString).subscribe(
-			people => {
-				//console.log("Searched data received from Subject...");
-				//console.table(people);
+			(people) => {
 				this.people = this.filterPeople(people);
 			},
-			error => console.error(error)
+			(error) => console.error(error)
 		);
 	}
 
-	filterSource(filterSubject: BehaviorSubject<FilterAttributeOption[]>) {
+	private sortOptions(subject) {
+		return subject.getValue().sort((a, b) => {
+			return a.value.localeCompare(b.value, undefined, {
+				numeric: true,
+				sensitivity: 'base'
+			});
+		});
+	}
+
+	private filterSource(filterSubject: BehaviorSubject<FilterAttributeOption[]>) {
 		return filterSubject
-			.map(options => {
-				return options.filter(option => {
-					//console.log(option.isActiveFilter.getValue());
+			.map((options) => {
+				return options.filter((option) => {
 					return option.isActiveFilter.getValue();
 				});
 			})
-			.map(options => options.map(option => option.value));
+			.map((options) => options.map((option) => option.value));
 	}
-	filterPeople(people: Organism[]): Organism[] {
-		console.log("Filtering...");
+	private filterPeople(people: Organism[]): Organism[] {
+		console.log('Filtering...');
 		let filteredPeople = [];
 		const peopleSource = from(people);
 		const heightSource = this.filterSource(this.heightOptionsSubject);
@@ -143,43 +139,43 @@ export class ListComponent implements OnInit {
 			}
 		);
 
-		console.log("People source: ", peopleSource);
+		console.log('People source: ', peopleSource);
 
 		peopleSource
-			.withLatestFrom(filterSource, (person, options) => {
-				return { person: person, optionsArray: options };
+			.withLatestFrom(filterSource, (p, options) => {
+				return { person: p, optionsArray: options };
 			})
-			.filter(check => {
-				return this.filterCheck(check, "height");
+			.filter((check) => {
+				return this.filterCheck(check, 'height');
 			})
-			.filter(check => {
-				return this.filterCheck(check, "mass");
+			.filter((check) => {
+				return this.filterCheck(check, 'mass');
 			})
-			.filter(check => {
-				return this.filterCheck(check, "hair_color");
+			.filter((check) => {
+				return this.filterCheck(check, 'hair_color');
 			})
-			.filter(check => {
-				return this.filterCheck(check, "eye_color");
+			.filter((check) => {
+				return this.filterCheck(check, 'eye_color');
 			})
-			.filter(check => {
-				return this.filterCheck(check, "skin_color");
+			.filter((check) => {
+				return this.filterCheck(check, 'skin_color');
 			})
-			.filter(check => {
-				return this.filterCheck(check, "gender");
+			.filter((check) => {
+				return this.filterCheck(check, 'gender');
 			})
-			.map(checked => checked.person)
+			.map((checked) => checked.person)
 			.reduce(
 				(acc: ReadonlyArray<Organism>, person) => acc.concat(person),
 				[]
 			)
 			.subscribe(
-				people => (filteredPeople = people),
-				error => console.error(error)
+				(people) => (filteredPeople = people),
+				(error) => console.error(error)
 			);
 		return filteredPeople;
 	}
 
-	filterCheck(check, attribute) {
+	private filterCheck(check, attribute) {
 		if (
 			check.optionsArray[attribute].length === 0 ||
 			check.optionsArray[attribute].includes(check.person[attribute])

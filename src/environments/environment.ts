@@ -5,5 +5,5 @@
 
 export const environment = {
 	production: false,
-	apiUrl: "https://swapi.co/api/people"
+	apiUrl: 'https://swapi.co/api/people'
 };

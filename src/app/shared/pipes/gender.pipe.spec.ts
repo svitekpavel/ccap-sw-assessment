@@ -1,9 +1,9 @@
-import { GenderPipe } from "./gender.pipe";
-import { SecurityContext } from "@angular/core";
-import { inject, TestBed } from "@angular/core/testing";
-import { DomSanitizer, BrowserModule } from "@angular/platform-browser";
+import { SecurityContext } from '@angular/core';
+import { inject, TestBed } from '@angular/core/testing';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { GenderPipe } from './gender.pipe';
 
-describe("GenderPipe", () => {
+describe('GenderPipe', () => {
 	let pipe;
 	let sanitizer;
 
@@ -20,13 +20,13 @@ describe("GenderPipe", () => {
 		})
 	);
 
-	it("creates an instance", () => {
+	it('creates an instance', () => {
 		expect(pipe).toBeTruthy();
 	});
 
 	it('transforms "female" to gender span tag', () => {
-		let value: any = "female";
-		let args: string[] = [];
+		const value: any = 'female';
+		const args: string[] = [];
 		const genderSpanTag = pipe.transform(value, args);
 		const sanitizedValue = sanitizer.sanitize(
 			SecurityContext.HTML,
@@ -39,8 +39,8 @@ describe("GenderPipe", () => {
 	});
 
 	it('transforms "male" to gender span tag', () => {
-		let value: any = "male";
-		let args: string[] = [];
+		const value: any = 'male';
+		const args: string[] = [];
 		const genderSpanTag = pipe.transform(value, args);
 		const sanitizedValue = sanitizer.sanitize(
 			SecurityContext.HTML,
@@ -53,8 +53,8 @@ describe("GenderPipe", () => {
 	});
 
 	it('transforms "hermaphrodite" to gender span tag', () => {
-		let value: any = "hermaphrodite";
-		let args: string[] = [];
+		const value: any = 'hermaphrodite';
+		const args: string[] = [];
 		const genderSpanTag = pipe.transform(value, args);
 		const sanitizedValue = sanitizer.sanitize(
 			SecurityContext.HTML,
@@ -67,8 +67,8 @@ describe("GenderPipe", () => {
 	});
 
 	it('transforms "narwhal" to gender span tag', () => {
-		let value: any = "narwhal";
-		let args: string[] = [];
+		const value: any = 'narwhal';
+		const args: string[] = [];
 		const genderSpanTag = pipe.transform(value, args);
 		const sanitizedValue = sanitizer.sanitize(
 			SecurityContext.HTML,

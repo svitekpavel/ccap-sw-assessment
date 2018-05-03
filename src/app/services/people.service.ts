@@ -1,29 +1,30 @@
-import { Injectable, OnInit } from "@angular/core";
-import { environment } from "environments/environment";
-import { Http } from "@angular/http";
-import { Organism } from "../shared/models/organism.interface";
-import { Observable } from "rxjs/Observable";
-import { ApiService } from "../services/api.service";
-import { Subject } from "rxjs/Subject";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/filter";
-import "rxjs/add/observable/of";
-import "rxjs/add/observable/from";
-import "rxjs/add/operator/distinct";
-import "rxjs/add/operator/scan";
-import "rxjs/add/operator/toArray";
+import { Injectable, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { environment } from 'environments/environment';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/distinct';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/scan';
+import 'rxjs/add/operator/skipWhile';
+import 'rxjs/add/operator/toArray';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { ApiService } from '../services/api.service';
 import {
 	FilterAttribute,
 	FilterAttributeOption
-} from "../shared/models/filter.interface";
+} from '../shared/models/filter.interface';
+import { Organism } from '../shared/models/organism.interface';
 
 @Injectable()
 export class PeopleService {
-	allPeopleSubject = new BehaviorSubject<Organism[]>([]);
-	allFiltersSubject = new Subject<Organism>();
+	private allPeopleSubject = new BehaviorSubject<Organism[]>([]);
+	private allFiltersSubject = new Subject<Organism>();
 
-	attributeFilters = {
+	private attributeFilters = {
 		height: this.newAttributeFilterSubject(),
 		mass: this.newAttributeFilterSubject(),
 		hair_color: this.newAttributeFilterSubject(),
@@ -36,20 +37,20 @@ export class PeopleService {
 		/**
 		 * Subscribe to the API to process people
 		 */
-		console.info("Subscribing to API Service Observable...");
+		console.info('Subscribing to API Service Observable...');
 		this.apiService.getAllPeople().subscribe(this.allPeopleSubject);
 
 		/**
 		 * Subscribe to the API and process people to Filters
 		 */
 		this.generateFilterValues();
-		this.attributeFilters["height"].subscribe();
+		this.attributeFilters['height'].subscribe();
 	}
 
-	newAttributeFilterSubject() {
+	public newAttributeFilterSubject() {
 		return new Subject<string>()
 			.distinct()
-			.map(attributeValue => {
+			.map((attributeValue) => {
 				const newOption: FilterAttributeOption = {
 					value: attributeValue,
 					isActiveFilter: new BehaviorSubject<boolean>(false)
@@ -58,40 +59,41 @@ export class PeopleService {
 			})
 			.scan((acc, value) => [...acc, value], []);
 	}
-	generateFilterValues(): void {
-		console.info("FILTER VALUE GENERATION");
+	public generateFilterValues(): void {
 		this.allPeopleSubject.asObservable().subscribe(
-			people => {
+			(people) => {
 				if (people.length > 0) {
-					console.info("People received, filtering...");
-					people.forEach(person => {
-						Object.keys(this.attributeFilters).forEach(key => {
+					console.info('People received, filtering...');
+					people.forEach((person) => {
+						Object.keys(this.attributeFilters).forEach((key) => {
 							this.attributeFilters[key].next(person[key]);
 						});
 					});
 				}
 			},
-			error => console.error(error),
-			() => console.log("Value filter complete")
+			(error) => console.error(error),
+			() => console.log('Value filter complete')
 		);
 	}
 
-	getAllPeople(): Observable<Organism[]> {
-		return this.allPeopleSubject.asObservable();
+	public getAllPeople(): Observable<Organism[]> {
+		return this.allPeopleSubject
+			.asObservable()
+			.skipWhile((result) => result.length === 0);
 	}
 
-	getFilterOptions(): any {
+	public getFilterOptions(): any {
 		return this.attributeFilters;
 	}
 
-	searchPeople(query: string): Observable<Organism[]> {
-		console.info("Start search...");
+	public searchPeople(query: string): Observable<Organism[]> {
+		console.info('Start search...');
 		const matches: Organism[] = this.allPeopleSubject
 			.getValue()
-			.filter(Organism => {
+			.filter((organism) => {
 				const queryString = `^${query}`;
-				const regex = RegExp(queryString, "i");
-				return regex.test(Organism.name);
+				const regex = RegExp(queryString, 'i');
+				return regex.test(organism.name);
 			});
 
 		return Observable.of(matches);

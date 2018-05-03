@@ -1,8 +1,8 @@
-import { Pipe, PipeTransform } from "@angular/core";
-import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 /*
  * Replace gender string with a unicode gender icon
- * 
+ *
  * Usage:
  *   value | gender
  * Example:
@@ -10,24 +10,27 @@ import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
  *   formats to: <span data-tooltip="female" class="gender">&#x2640;</span>
 */
 @Pipe({
-	name: "gender"
+	name: 'gender'
 })
 export class GenderPipe implements PipeTransform {
 	constructor(private _sanitizer: DomSanitizer) {}
 
-	transform(value: string): SafeHtml {
+	public transform(value: string): SafeHtml {
 		let icon: string;
 
 		switch (value) {
-			case "male":
-				icon = "&#x2642;";
+			case 'male':
+				icon = '&#x2642;';
 				break;
-			case "female":
-				icon = "&#x2640;";
+			case 'female':
+				icon = '&#x2640;';
+				break;
+			case 'hermaphrodite':
+				icon = '&#x26A5;';
 				break;
 			default:
-				icon = "?";
-				value = "Unknown";
+				icon = '?';
+				value = 'Unknown';
 				break;
 		}
 

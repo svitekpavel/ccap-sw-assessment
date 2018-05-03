@@ -1,16 +1,16 @@
-import { AppPage } from "./app.po";
-import { browser, by, element } from "protractor";
+import { browser, by, element } from 'protractor';
+import { AppPage } from './app.po';
 
-describe("Find an Au Pair App", () => {
+describe('Find an Au Pair App', () => {
 	let page: AppPage;
 
 	beforeEach(() => {
 		page = new AppPage();
 	});
 
-	it("should display loading message", () => {
+	it('should display loading message', () => {
 		page.navigateTo();
 		browser.pause();
-		expect(page.getParagraphText()).toEqual("Welcome to app!");
+		expect(page.getParagraphText()).toEqual('Welcome to app!');
 	});
 });

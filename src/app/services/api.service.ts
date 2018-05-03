@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { environment } from "environments/environment";
-import { Http } from "@angular/http";
-import { Organism } from "../shared/models/organism.interface";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
-import "rxjs/add/observable/throw";
-import "rxjs/add/observable/empty";
-import "rxjs/add/operator/expand";
-import "rxjs/add/operator/reduce";
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { environment } from 'environments/environment';
+import 'rxjs/add/observable/empty';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/expand';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/reduce';
+import { Observable } from 'rxjs/Observable';
+import { Organism } from '../shared/models/organism.interface';
 
 const API_URL = environment.apiUrl;
 
@@ -21,9 +21,9 @@ interface SwapiRes {
 export class ApiService {
 	constructor(private http: Http) {}
 
-	//SWAPI Api: GET /people
-	getAllPeople(): Observable<Organism[]> {
-		console.info("Making an API call for data...");
+	// SWAPI Api: GET /people
+	public getAllPeople(): Observable<Organism[]> {
+		console.info('Making an API call for data...');
 		return this.getApiPage(API_URL)
 			.expand(
 				(r: SwapiRes) =>
@@ -38,11 +38,11 @@ export class ApiService {
 			);
 	}
 
-	getApiPage(url) {
-		return this.http.get(url).map(r => r.json());
+	private getApiPage(url) {
+		return this.http.get(url).map((r) => r.json());
 	}
 
-	isNil<A>(a: A): boolean {
+	private isNil<A>(a: A): boolean {
 		return a === null || a === undefined;
 	}
 }

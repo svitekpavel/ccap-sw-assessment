@@ -21,9 +21,10 @@ import { Organism } from '../shared/models/organism.interface';
 
 @Injectable()
 export class PeopleService {
-	private allPeopleSubject = new BehaviorSubject<Organism[]>([]);
+	private allPeopleSubject = new BehaviorSubject<Organism[]>([]); //Store all people
 	private allFiltersSubject = new Subject<Organism>();
 
+	// Store filters by attribute
 	private attributeFilters = {
 		height: this.newAttributeFilterSubject(),
 		mass: this.newAttributeFilterSubject(),
@@ -34,19 +35,20 @@ export class PeopleService {
 	};
 
 	constructor(private apiService: ApiService) {
-		/**
-		 * Subscribe to the API to process people
-		 */
+		
+		// Subscribe to the API to process people
 		console.info('Subscribing to API Service Observable...');
 		this.apiService.getAllPeople().subscribe(this.allPeopleSubject);
 
-		/**
-		 * Subscribe to the API and process people to Filters
-		 */
+		// Subscribe to the API and process people to Filters
 		this.generateFilterValues();
-		this.attributeFilters['height'].subscribe();
 	}
 
+	/**
+	 * Returns a new Subject of distinct attribute values 
+	 * 	mapped to FilterAttributeOption Interfaces
+	 * @return {Subject<string>} An observable stream of FilterAttributeOptions
+	 */
 	public newAttributeFilterSubject() {
 		return new Subject<string>()
 			.distinct()
@@ -59,6 +61,11 @@ export class PeopleService {
 			})
 			.scan((acc, value) => [...acc, value], []);
 	}
+
+	/**
+	 * Parses all people to identify the values used in the filters
+	 * @returns {void}
+	 */
 	public generateFilterValues(): void {
 		this.allPeopleSubject.asObservable().subscribe(
 			(people) => {
@@ -76,16 +83,29 @@ export class PeopleService {
 		);
 	}
 
+	/**
+	 * Returns an observable with the first non-zero-length collection of Organisms
+	 * @returns {Observable<Organism[]>} Observable array of Organisms
+	 */
 	public getAllPeople(): Observable<Organism[]> {
 		return this.allPeopleSubject
 			.asObservable()
 			.skipWhile((result) => result.length === 0);
 	}
 
+	/**
+	 * Returns the array of filters
+	 * @returns {Array}
+	 */
 	public getFilterOptions(): any {
 		return this.attributeFilters;
 	}
 
+	/**
+	 * Returns an Observable of People who match the search query
+	 * @param {query} Query string provider by user input.
+	 * @returns {Observable<Organism[]>}
+	 */
 	public searchPeople(query: string): Observable<Organism[]> {
 		console.info('Start search...');
 		const matches: Organism[] = this.allPeopleSubject

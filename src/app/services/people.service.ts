@@ -13,6 +13,8 @@ import "rxjs/add/observable/from";
 import "rxjs/add/operator/distinct";
 import "rxjs/add/operator/scan";
 import "rxjs/add/operator/toArray";
+import "rxjs/add/operator/skipWhile";
+
 import {
 	FilterAttribute,
 	FilterAttributeOption
@@ -59,7 +61,6 @@ export class PeopleService {
 			.scan((acc, value) => [...acc, value], []);
 	}
 	generateFilterValues(): void {
-		console.info("FILTER VALUE GENERATION");
 		this.allPeopleSubject.asObservable().subscribe(
 			people => {
 				if (people.length > 0) {
@@ -77,7 +78,9 @@ export class PeopleService {
 	}
 
 	getAllPeople(): Observable<Organism[]> {
-		return this.allPeopleSubject.asObservable();
+		return this.allPeopleSubject
+			.asObservable()
+			.skipWhile(result => result.length === 0);
 	}
 
 	getFilterOptions(): any {

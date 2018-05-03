@@ -10,7 +10,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 */
 @Pipe({ name: "units" })
 export class UnitsPipe implements PipeTransform {
-	transform(value: string, unit: string = "cm"): string {
+	transform(value: string, unit = "cm"): string {
 		if (value === "unknown" || value === undefined) {
 			return `Unknown`;
 		}

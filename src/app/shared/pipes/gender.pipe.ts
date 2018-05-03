@@ -25,6 +25,9 @@ export class GenderPipe implements PipeTransform {
 			case "female":
 				icon = "&#x2640;";
 				break;
+			case "hermaphrodite":
+				icon = "&#x26A5;";
+				break;
 			default:
 				icon = "?";
 				value = "Unknown";

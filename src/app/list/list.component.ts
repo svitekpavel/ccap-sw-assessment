@@ -82,6 +82,11 @@ export class ListComponent implements OnInit {
 			.debounceTime(500)
 			.subscribe((queryString) => this.searchPeople(queryString));
 	}
+
+	/**
+	 * Communicates with the peopleService to return a list filtered search results
+	 * @param queryString 
+	 */
 	public searchPeople(queryString: string) {
 		console.info(`Search query received: '${queryString}'`);
 		this.peopleService.searchPeople(queryString).subscribe(
@@ -92,6 +97,10 @@ export class ListComponent implements OnInit {
 		);
 	}
 
+	/**
+	 * Returns a subject with its values filtered
+	 * @param subject 
+	 */
 	private sortOptions(subject) {
 		return subject.getValue().sort((a, b) => {
 			return a.value.localeCompare(b.value, undefined, {
@@ -101,6 +110,10 @@ export class ListComponent implements OnInit {
 		});
 	}
 
+	/**
+	 * Return a filterSource Observable from a given filterSubject
+	 * @param filterSubject 
+	 */
 	private filterSource(filterSubject: BehaviorSubject<FilterAttributeOption[]>) {
 		return filterSubject
 			.map((options) => {
@@ -110,6 +123,11 @@ export class ListComponent implements OnInit {
 			})
 			.map((options) => options.map((option) => option.value));
 	}
+
+	/**
+	 * Returns a list of people filtered based on the values in the 6 observable filterSources
+	 * @param people 
+	 */
 	private filterPeople(people: Organism[]): Organism[] {
 		console.log('Filtering...');
 		let filteredPeople = [];
@@ -138,8 +156,6 @@ export class ListComponent implements OnInit {
 				};
 			}
 		);
-
-		console.log('People source: ', peopleSource);
 
 		peopleSource
 			.withLatestFrom(filterSource, (p, options) => {
@@ -175,6 +191,11 @@ export class ListComponent implements OnInit {
 		return filteredPeople;
 	}
 
+	/**
+	 * Returns true if there are no filters selected or if the persons attribute matches a selected attribute value
+	 * @param check An object consisting of a person and options
+	 * @param attribute Attribute to check against
+	 */
 	private filterCheck(check, attribute) {
 		if (
 			check.optionsArray[attribute].length === 0 ||

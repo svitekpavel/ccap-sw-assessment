@@ -1,18 +1,17 @@
 # Task
 
-Based on the included mockup, create an application which will display a list of people/organisms and their information.
-The user will be able to filter the list of organisms based on criteria (left sidebar) as well as search.
+Based on the included mockup, update this application which displays a list of people/organisms and their information.
 
-You can use the Star Wars API: https://swapi.co/api/people/
+The app uses the Star Wars API: https://swapi.co/
 
-## Functionality requirements:
+## Tasks to complete:
 
-- The user can select multiple filters (in an **OR** relationship between them)
-- The filters should be checkboxes/radios/dropdpowns - no text inputs - the options can be derived from the endpoint response
-- The search functionality is a text input, and searches for the name of the organism
-- Search input and filters are working together in an **AND** relationship, meaning that if a filter is selected, the search will take that into account, and vice-versa
-- No need to be responsive (CSS)
-- No need to be cross-browser compatible - will be viewed in Chrome
+- Add the search functionality
+-- The search functionality is a text input, and searches for the name of the organism when the search button is clicked
+- Convert the person's name to a link that links to the url value returned in their record
+- Add a spec for the person's homeworld.
+- Create and apply a pipe that takes the person's gender and converts it to a gender icon or a question mark.
+- Create and apply a pipe that adds units for both the height and weight fields.
 
 ## A few important points that we highly appreciate:
 
@@ -25,7 +24,7 @@ You can use the Star Wars API: https://swapi.co/api/people/
 #### Extra points (nice to have)
 
 - Paginate the results (10 results per page)
-- Generate the filter options from the API response, programmatically (e.g. a dropdown for the "hair_color", with all the values that the response contains)
+- Fully responsive
 
 ## Included files:
 
@@ -42,7 +41,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 #### Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:3212/`. The app will automatically reload if you change any of the source files.
 
 #### Code scaffolding
 

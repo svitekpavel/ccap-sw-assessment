@@ -1,128 +1,6 @@
 <div class="list-container">
-	<div class="list__filters">
-		<h5 class="list__filters-title">FILTER</h5>
-
-		<!-- Height filter block -->
-		<div class="list__filters-filter">
-			<button class="list__filters-filter__header">
-				<label class="list__filters-filter__label">Height</label>
-				<div class="list__filters-filter__icon" aria-roledescription="icons" aria-hidden="true"></div>
-			</button>
-			<ul class="list__filters-filter__options">
-				<li *ngFor="let option of sortOptions(heightOptionsSubject)" [class]="option.isActiveFilter.getValue() ? 'list__filters__option list__filters__option--selected' : 'list__filters__option'">
-					<div *ngIf="!option.isActiveFilter.getValue()" class="list__filters__option-control" (click)="option.isActiveFilter.next(true); querySubject.next(query.value)">
-						<i class="fas fa-plus filter-option__icon" aria-hidden="true"></i> {{option.value | units:'cm'}}</div>
-					<div *ngIf="option.isActiveFilter.getValue()" class="list__filters__option-control list__filters__option-control--selected"
-					 (click)="option.isActiveFilter.next(false); querySubject.next(query.value)">
-						<i class="fas fa-minus filter-option__icon" aria-hidden="true"></i> {{option.value | units:'cm'}}
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<!-- Mass filter block -->
-		<div class="list__filters-filter">
-			<button class="list__filters-filter__header">
-				<label class="list__filters-filter__label">Mass</label>
-				<div class="list__filters-filter__icon" aria-roledescription="icons" aria-hidden="true"></div>
-			</button>
-			<ul class="list__filters-filter__options">
-				<li *ngFor="let option of sortOptions(massOptionsSubject)" [class]="option.isActiveFilter.getValue() ? 'list__filters__option list__filters__option--selected' : 'list__filters__option'">
-					<div *ngIf="!option.isActiveFilter.getValue()" class="list__filters__option-control" (click)="option.isActiveFilter.next(true); querySubject.next(query.value)">
-						<i class="fas fa-plus filter-option__icon" aria-hidden="true"></i> {{option.value | units:'kg'}}</div>
-					<div *ngIf="option.isActiveFilter.getValue()" class="list__filters__option-control list__filters__option-control--selected"
-					 (click)="option.isActiveFilter.next(false); querySubject.next(query.value)">
-						<i class="fas fa-minus filter-option__icon" aria-hidden="true"></i> {{option.value | units:'kg'}}
-					</div>
-				</li>
-			</ul>
-		</div>
-		<!-- Hair Color filter block -->
-		<div class="list__filters-filter">
-			<button class="list__filters-filter__header">
-				<label class="list__filters-filter__label">Hair Color</label>
-				<div class="list__filters-filter__icon" aria-roledescription="icons" aria-hidden="true"></div>
-			</button>
-			<ul class="list__filters-filter__options">
-				<li *ngFor="let option of sortOptions(hairColorOptionsSubject)" [class]="option.isActiveFilter.getValue() ? 'list__filters__option list__filters__option--selected' : 'list__filters__option'">
-					<div *ngIf="!option.isActiveFilter.getValue()" class="list__filters__option-control" (click)="option.isActiveFilter.next(true); querySubject.next(query.value)">
-						<i class="fas fa-plus filter-option__icon" aria-hidden="true"></i> {{option.value | titlecase}}</div>
-					<div *ngIf="option.isActiveFilter.getValue()" class="list__filters__option-control list__filters__option-control--selected"
-					 (click)="option.isActiveFilter.next(false); querySubject.next(query.value)">
-						<i class="fas fa-minus filter-option__icon" aria-hidden="true"></i> {{option.value | titlecase}}
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<!-- Skin Color filter block -->
-		<div class="list__filters-filter">
-			<button class="list__filters-filter__header">
-				<label class="list__filters-filter__label">Skin Color</label>
-				<div class="list__filters-filter__icon" aria-roledescription="icons" aria-hidden="true"></div>
-			</button>
-			<ul class="list__filters-filter__options">
-				<li *ngFor="let option of sortOptions(skinColorOptionsSubject)" [class]="option.isActiveFilter.getValue() ? 'list__filters__option list__filters__option--selected' : 'list__filters__option'">
-					<div *ngIf="!option.isActiveFilter.getValue()" class="list__filters__option-control" (click)="option.isActiveFilter.next(true); querySubject.next(query.value)">
-						<i class="fas fa-plus filter-option__icon" aria-hidden="true"></i> {{option.value | titlecase}}</div>
-					<div *ngIf="option.isActiveFilter.getValue()" class="list__filters__option-control list__filters__option-control--selected"
-					 (click)="option.isActiveFilter.next(false); querySubject.next(query.value)">
-						<i class="fas fa-minus filter-option__icon" aria-hidden="true"></i> {{option.value | titlecase}}
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<!-- Eye Color filter block -->
-		<div class="list__filters-filter">
-			<button class="list__filters-filter__header">
-				<label class="list__filters-filter__label">Eye Color</label>
-				<div class="list__filters-filter__icon" aria-roledescription="icons" aria-hidden="true"></div>
-			</button>
-			<ul class="list__filters-filter__options">
-				<li *ngFor="let option of sortOptions(eyeColorOptionsSubject)" [class]="option.isActiveFilter.getValue() ? 'list__filters__option list__filters__option--selected' : 'list__filters__option'">
-					<div *ngIf="!option.isActiveFilter.getValue()" class="list__filters__option-control" (click)="option.isActiveFilter.next(true); querySubject.next(query.value)">
-						<i class="fas fa-plus filter-option__icon" aria-hidden="true"></i> {{option.value | titlecase}}</div>
-					<div *ngIf="option.isActiveFilter.getValue()" class="list__filters__option-control list__filters__option-control--selected"
-					 (click)="option.isActiveFilter.next(false); querySubject.next(query.value)">
-						<i class="fas fa-minus filter-option__icon" aria-hidden="true"></i> {{option.value | titlecase}}
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<!-- Gender filter block -->
-		<div class="list__filters-filter">
-			<button class="list__filters-filter__header">
-				<label class="list__filters-filter__label">Gender</label>
-				<div class="list__filters-filter__icon" aria-roledescription="icons" aria-hidden="true"></div>
-			</button>
-			<ul class="list__filters-filter__options">
-				<li *ngFor="let option of sortOptions(genderOptionsSubject)" [class]="option.isActiveFilter.getValue() ? 'list__filters__option list__filters__option--selected' : 'list__filters__option'">
-					<div *ngIf="!option.isActiveFilter.getValue()" class="list__filters__option-control" (click)="option.isActiveFilter.next(true); querySubject.next(query.value)">
-						<i class="fas fa-plus filter-option__icon" aria-hidden="true"></i> {{option.value | titlecase}}</div>
-					<div *ngIf="option.isActiveFilter.getValue()" class="list__filters__option-control list__filters__option-control--selected"
-					 (click)="option.isActiveFilter.next(false); querySubject.next(query.value)">
-						<i class="fas fa-minus filter-option__icon" aria-hidden="true"></i> {{option.value | titlecase}}
-					</div>
-				</li>
-			</ul>
-		</div>
-
-	</div>
-	<div class="list__search">
-		<h5 class="list__search-title">SEARCH AU PAIRS</h5>
-		<input #query (keyup.enter)="querySubject.next(query.value)" type="text" class="list__search-input" />
-		<button (click)="querySubject.next(query.value)" class="list__search-button">
-			<img alt="search" src="assets/icons/svgs/search.svg" />
-		</button>
-		<div *ngIf="!loaded" class="list__results-count">Loading...</div>
-
-		<div *ngIf="loaded && people.length === 0" class="list__results-count">No results...</div>
-
-		<div *ngIf="loaded && people.length > 0" class="list__results-count">Found {{people.length}} {{people.length > 1 ? 'matches' : 'match' }}</div>
-	</div>
 	<div class="list__results">
+		<div *ngIf="!loaded" class="list__results-count">Loading...</div>
 
 		<div *ngIf="loaded && people.length > 0" class="list__results-list">
 
@@ -131,10 +9,10 @@
 				<!-- HEADER -->
 				<div class="list__item-header">
 					<h6 class="list__item-header-title">
-						<a href="{{person.url}}">{{ person.name }}</a>
+						{{ person.name }}
 					</h6>
-					<div class="list__item-header-gender" [innerHTML]="person.gender | gender"></div>
-					<div class="list__item-header-birthyear" [innerHTML]="person.birth_year | galacticYear"></div>
+					<div class="list__item-header-gender" [innerHtml]="person.gender"></div>
+					<div class="list__item-header-birthyear" [innerHtml]="person.birth_year"></div>
 				</div>
 
 				<ul class="list__item-content">
@@ -142,13 +20,13 @@
 						<span class="item-content-spec__header">
 							Height
 						</span>
-						{{ person.height | units:'cm' }}
+						{{ person.height }}
 					</li>
 					<li class="list__item-content-spec">
 						<span class="item-content-spec__header">
 							Mass
 						</span>
-						{{ person.mass | units:'kg'}}
+						{{ person.mass }}
 					</li>
 					<li class="list__item-content-spec">
 						<span class="item-content-spec__header">

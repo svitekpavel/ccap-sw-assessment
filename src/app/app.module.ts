@@ -9,22 +9,15 @@ import { HeaderComponent } from './header/header.component';
 import { ListComponent } from './list/list.component';
 
 import { ApiService } from './services/api.service';
-import { PeopleService } from './services/people.service';
-import { GalacticYearPipe } from './shared/pipes/galactic-year.pipe';
-import { GenderPipe } from './shared/pipes/gender.pipe';
-import { UnitsPipe } from './shared/pipes/units.pipe';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		HeaderComponent,
-		ListComponent,
-		UnitsPipe,
-		GenderPipe,
-		GalacticYearPipe
+		ListComponent
 	],
 	imports: [BrowserModule, CommonModule, HttpClientModule, HttpModule],
-	providers: [ApiService, PeopleService],
+	providers: [ApiService],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

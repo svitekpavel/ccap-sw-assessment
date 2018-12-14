@@ -41,8 +41,6 @@ export class ApiService {
 	 * @returns Observable
 	 */
 	public getAllPeople(): Observable<Organism[]> {
-		console.info('Making an API call for data...');
-
 		// Request the first page from the API
 		return this.getApiPage(API_URL)
 			.expand( 

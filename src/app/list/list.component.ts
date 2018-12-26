@@ -20,12 +20,14 @@ export class ListComponent implements OnInit {
 	constructor(private peopleService: ApiService) {}
 
 	public ngOnInit() {
-		const input: HTMLInputElement = document.querySelector('.search input[type=text]');
 		const form: HTMLFormElement = document.querySelector('.search form');
 
 		// This could have been implemented as onChange event on input element after debounce
 		// However, the task was to include a search button
 		form.addEventListener('submit', (event: Event) => {
+			const input: HTMLInputElement = document.querySelector('.search input[type=text]');
+
+			// Prevent default form submit
 			event.preventDefault();
 
 			const searchValue = input.value;

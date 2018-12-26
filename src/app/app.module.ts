@@ -7,6 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ListComponent } from './list/list.component';
+import { GenderAvatarPipe } from './shared/pipes/genderAvatar';
+import { OrganismHeightPipe } from './shared/pipes/organismHeight';
+import { OrganismWeightPipe } from './shared/pipes/organismWeight';
 
 import { ApiService } from './services/api.service';
 
@@ -14,7 +17,10 @@ import { ApiService } from './services/api.service';
 	declarations: [
 		AppComponent,
 		HeaderComponent,
-		ListComponent
+		ListComponent,
+		GenderAvatarPipe,
+		OrganismHeightPipe,
+		OrganismWeightPipe,
 	],
 	imports: [BrowserModule, CommonModule, HttpClientModule, HttpModule],
 	providers: [ApiService],

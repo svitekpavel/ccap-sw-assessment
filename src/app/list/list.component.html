@@ -24,7 +24,7 @@
 					<h6 class="list__item-header-title">
 						<a href="{{ person.url }}" target="_blank">{{ person.name }}</a>
 					</h6>
-					<div class="list__item-header-gender" [innerHtml]="person.gender"></div>
+					<div class="list__item-header-gender" [innerHTML]="person.gender | genderAvatar"></div>
 					<div class="list__item-header-birthyear" [innerHtml]="person.birth_year"></div>
 				</div>
 
@@ -33,13 +33,13 @@
 						<span class="item-content-spec__header">
 							Height
 						</span>
-						{{ person.height }}
+						{{ person.height | organismHeight }}
 					</li>
 					<li class="list__item-content-spec">
 						<span class="item-content-spec__header">
 							Mass
 						</span>
-						{{ person.mass }}
+						{{ person.mass | organismWeight }}
 					</li>
 					<li class="list__item-content-spec">
 						<span class="item-content-spec__header">

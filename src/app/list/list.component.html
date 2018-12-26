@@ -22,7 +22,7 @@
 				<!-- HEADER -->
 				<div class="list__item-header">
 					<h6 class="list__item-header-title">
-						{{ person.name }}
+						<a href="{{ person.url }}" target="_blank">{{ person.name }}</a>
 					</h6>
 					<div class="list__item-header-gender" [innerHtml]="person.gender"></div>
 					<div class="list__item-header-birthyear" [innerHtml]="person.birth_year"></div>

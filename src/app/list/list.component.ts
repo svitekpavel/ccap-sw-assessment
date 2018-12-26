@@ -3,9 +3,9 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/skipWhile';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/zip';
-import { Subject } from 'rxjs/Subject';
-import { Organism } from './../shared/models/organism.interface';
+
 import { ApiService } from './../services/api.service';
+import { Organism } from './../shared/models/organism.interface';
 
 @Component({
 	selector: 'app-list',
@@ -15,25 +15,44 @@ import { ApiService } from './../services/api.service';
 })
 export class ListComponent implements OnInit {
 	private people: Organism[] = [];
-	private loaded: boolean = false;
-
-	private querySubject = new Subject<string>();
+	private loading: boolean = true;
 
 	constructor(private peopleService: ApiService) {}
 
 	public ngOnInit() {
+		const input: HTMLInputElement = document.querySelector('.search input[type=text]');
+		const form: HTMLFormElement = document.querySelector('.search form');
+
+		// This could have been implemented as onChange event on input element after debounce
+		// However, the task was to include a search button
+		form.addEventListener('submit', (event: Event) => {
+			event.preventDefault();
+
+			const searchValue = input.value;
+			this.loading = true;
+
+			this.peopleService.getAllPeople(searchValue).subscribe(
+				this.setPeople.bind(this),
+				this.setError.bind(this)
+			);
+		});
+
 		/**
 		 * Subscribe to the peopleService to receive people
 		 */
 		this.peopleService.getAllPeople().subscribe(
-			(people) => {
-				this.people = people;
-				
-				if (people.length > 0) {
-					this.loaded = true;
-				}
-			},
-			(error) => console.error(error)
+			this.setPeople.bind(this),
+			this.setError.bind(this)
 		);
+	}
+
+	private setPeople(people): void {
+		this.people = people;
+		this.loading = false;
+	}
+
+	private setError(error): void {
+		console.log(error);
+		this.loading = false;
 	}
 }

@@ -1,8 +1,21 @@
 <div class="list-container">
 	<div class="list__results">
-		<div *ngIf="!loaded" class="list__results-count">Loading...</div>
 
-		<div *ngIf="loaded && people.length > 0" class="list__results-list">
+		<div class="search">
+			<form>
+				<input type="text" placeholder="R2-D2, Luke Skywalker, .." />
+				<input type="submit" *ngIf="!loading" value="Search" />
+				<input type="submit" *ngIf="loading" value="Loading.." disabled />
+				<!-- <button>
+					<span *ngIf="!loading">Search</span>
+					<span *ngIf="loading">Loading..</span>
+				</button> -->
+			</form>
+		</div>
+
+		<div *ngIf="loading" class="list__results-count">Loading...</div>
+
+		<div *ngIf="!loading && people.length > 0" class="list__results-list">
 
 			<div class="list__item" *ngFor="let person of people">
 

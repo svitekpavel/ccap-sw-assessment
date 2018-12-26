@@ -28,6 +28,20 @@ $header-male-height: 20px;
 	padding: 0 $small-spacing;
 	color: $black;
 
+	.search {
+		margin: $medium-spacing 0;
+
+        input[type="text"] {
+            width: calc(100% - 200px);
+            padding: $small-spacing $medium-spacing;
+        }
+
+        input[type="submit"] {
+            width: 150px;
+            padding: $small-spacing $medium-spacing;
+        }
+    }
+
 	.list__item {
 		background: $white;
 		margin-bottom: $large-spacing;

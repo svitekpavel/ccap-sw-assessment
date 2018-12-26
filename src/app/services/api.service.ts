@@ -25,7 +25,7 @@ interface SwapiRes {
 
 /**
  * API SERVICE
- * 
+ *
  * Methods for communicating with the Star Wars API
  * and for distributing the data.
  */
@@ -36,14 +36,15 @@ export class ApiService {
 	// Provide the http module to the service
 	constructor(private http: Http) {}
 
-	/** 
+	/**
 	 * Returns an observable of all Organisms in the API
 	 * @returns Observable
 	 */
-	public getAllPeople(): Observable<Organism[]> {
+	public getAllPeople(searchString: string = null): Observable<Organism[]> {
+		const apiUrl: string = this.createApiUrl(searchString);
 		// Request the first page from the API
-		return this.getApiPage(API_URL)
-			.expand( 
+		return this.getApiPage(apiUrl)
+			.expand(
 				// Expand the reults of the first call to recursively load each page of results
 				(r: SwapiRes) =>
 					this.isNil(r.next)
@@ -58,20 +59,32 @@ export class ApiService {
 			);
 	}
 
-	/** 
+	/**
+	 * Returns the URL of API based on searchString
+	 * @param {string} searchString
+	 * @returns: {string} API URL
+	 */
+	private createApiUrl(searchString: string): string {
+		if (searchString) {
+			return `${API_URL}/?search=${searchString}`;
+		}
+		return API_URL;
+	}
+
+	/**
 	 * Returns the JSON from a URL
 	 * @param {string} url
 	 * @returns: {object} JSON response
-	 * */	
+	 */
 	private getApiPage(url) {
 		return this.http.get(url).map((r) => r.json());
 	}
 
-	/** 
+	/**
 	 * Returns a boolean indicating whether the property passed is empty
-	 * @param {string} 
+	 * @param {string}
 	 * @returns {boolean}
-	 * */	
+	 */
 	private isNil<A>(a: A): boolean {
 		return a === null || a === undefined;
 	}

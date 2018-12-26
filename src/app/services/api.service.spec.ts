@@ -32,4 +32,11 @@ describe('ApiService', () => {
 			.getAllPeople()
 			.subscribe((result) => expect(result.length).toBeGreaterThan(0));
 	}));
+
+	it('retrieves exactly 1 organism: "R2-D2"', async(() => {
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+		service
+			.getAllPeople('r2')
+			.subscribe((result) => expect(result.length).toBe(1));
+	}));
 });

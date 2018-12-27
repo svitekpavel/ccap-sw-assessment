@@ -28,8 +28,8 @@ $header-male-height: 20px;
 	padding: 0 $small-spacing;
 	color: $black;
 
-	.search {
-		margin: $medium-spacing 0;
+	.list__search-container {
+		margin: $small-spacing 0 $medium-spacing;
 
         input[type="text"] {
             width: calc(100% - 200px);
@@ -39,7 +39,13 @@ $header-male-height: 20px;
         input[type="submit"] {
             width: 150px;
             padding: $small-spacing $medium-spacing;
-        }
+		}
+
+		h5 {
+			color: $lightblue;
+			font-weight: 400;
+			text-transform: uppercase;
+		}
     }
 
 	.list__item {
@@ -111,6 +117,10 @@ $header-male-height: 20px;
 
 .list__results {
 	grid-area: results;
+
+	.list__results-list {
+		margin: $large-spacing 0;
+	}
 }
 
 .list__results-count {

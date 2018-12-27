@@ -16,12 +16,12 @@ import { Organism } from './../shared/models/organism.interface';
 export class ListComponent implements OnInit {
 	private people: Organism[] = [];
 	private loading: boolean = true;
-	private searchValue: string = '';
+	private searchValue: string = 'luke';
 
 	constructor(private peopleService: ApiService) {}
 
 	public ngOnInit() {
-		const form: HTMLFormElement = document.querySelector('.search form');
+		const form: HTMLFormElement = document.querySelector('.list__search-container form');
 
 		// This could have been implemented as onChange event on input element after debounce
 		// However, the task was to include a search button
@@ -40,7 +40,7 @@ export class ListComponent implements OnInit {
 		/**
 		 * Subscribe to the peopleService to receive people
 		 */
-		this.peopleService.getAllPeople().subscribe(
+		this.peopleService.getAllPeople(this.searchValue).subscribe(
 			this.setPeople.bind(this),
 			this.setError.bind(this)
 		);

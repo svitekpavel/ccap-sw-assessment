@@ -1,7 +1,8 @@
 <div class="list-container">
 	<div class="list__results">
 
-		<div class="search">
+		<div class="list__search-container">
+			<h5>Search Au Pairs</h5>
 			<form>
 				<input type="text" placeholder="R2-D2, Luke Skywalker, .." name="searchValue" [(ngModel)]="searchValue" />
 				<input type="submit" *ngIf="!loading" value="Search" />
@@ -10,6 +11,7 @@
 		</div>
 
 		<div *ngIf="loading" class="list__results-count">Loading...</div>
+		<div *ngIf="!loading" class="list__results-count">Found {{ people.length }} match</div>
 
 		<div *ngIf="!loading && people.length > 0" class="list__results-list">
 

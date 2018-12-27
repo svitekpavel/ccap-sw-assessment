@@ -5,8 +5,8 @@
 			<h5>Search Au Pairs</h5>
 			<form>
 				<input type="text" placeholder="R2-D2, Luke Skywalker, .." name="searchValue" [(ngModel)]="searchValue" />
-				<input type="submit" *ngIf="!loading" value="Search" />
-				<input type="submit" *ngIf="loading" value="Loading.." disabled />
+				<input type="submit" *ngIf="!loading" value="" />
+				<input type="submit" *ngIf="loading" value="" disabled />
 			</form>
 		</div>
 

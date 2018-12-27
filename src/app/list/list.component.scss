@@ -31,14 +31,27 @@ $header-male-height: 20px;
 	.list__search-container {
 		margin: $small-spacing 0 $medium-spacing;
 
+		form {
+			display: flex;
+			align-items: center;
+		}
+
         input[type="text"] {
-            width: calc(100% - 200px);
-            padding: $small-spacing $medium-spacing;
+			border: 1px solid $grey;
+			padding: $small-spacing $medium-spacing;
+            width: 100%;
         }
 
         input[type="submit"] {
-            width: 150px;
-            padding: $small-spacing $medium-spacing;
+			height: 100%;
+            width: 50px;
+			padding: $small-spacing $medium-spacing;
+			background-color: $teal;
+			background-image: URL('../../assets/icons/svgs/search.svg');
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+			background-size: 20px;
+			border: 1px solid $teal;
 		}
 
 		h5 {

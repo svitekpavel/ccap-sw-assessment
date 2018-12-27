@@ -4,7 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 	name: 'organismHeight'
 })
 export class OrganismHeightPipe implements PipeTransform {
-	public transform(height: string): string {
-		return `${height} cm`;
+	public transform(height: string | number): string {
+		if (height && height !== '' && !isNaN(height as number)) {
+			return `${height} cm`;
+		}
+		return height.toString();
 	}
 }

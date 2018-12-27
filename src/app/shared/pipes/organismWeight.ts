@@ -4,7 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 	name: 'organismWeight'
 })
 export class OrganismWeightPipe implements PipeTransform {
-	public transform(weight: string): string {
-		return `${weight} kg`;
+	public transform(weight: string | number): string {
+		if (weight && weight !== '' && !isNaN(weight as number)) {
+			return `${weight} kg`;
+		}
+		return weight.toString();
 	}
 }

@@ -16,7 +16,7 @@ import { Organism } from './../shared/models/organism.interface';
 export class ListComponent implements OnInit {
 	private people: Organism[] = [];
 	private loading: boolean = true;
-	private searchValue: string = 'luke';
+	private searchValue: string = '';
 
 	constructor(private peopleService: ApiService) {}
 

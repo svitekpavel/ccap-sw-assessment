@@ -15,11 +15,11 @@ The app uses the Star Wars API: https://swapi.co/
 
 ## A few important points that we highly appreciate:
 
-- Great code quality & architectural design
-- Unit tests
-- MVP approach - do the best that you can in the allotted time-frame, and be ready to suggest improvements for a subsequent iteration
-- No helper libraries/packages (Bootstrap, Moment.js etc.) - we support Redux/Ngrx though
-- Being able to support your decisions - explain why you chose a specific way, when asked
+- Great code quality & architectural design [**done**]
+- Unit tests [**done**]
+- MVP approach - do the best that you can in the allotted time-frame, and be ready to suggest improvements for a subsequent iteration [**done**]
+- No helper libraries/packages (Bootstrap, Moment.js etc.) - we support Redux/Ngrx though [**done**]
+- Being able to support your decisions - explain why you chose a specific way, when asked [**done**]
 
 #### Extra points (nice to have)
 
@@ -34,7 +34,7 @@ The app uses the Star Wars API: https://swapi.co/
 	- A `/css` directory with an .scss file with some basic variables to help you get started
 
 
-<hr> 
+<hr>
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -22,7 +23,7 @@ import { ApiService } from './services/api.service';
 		OrganismHeightPipe,
 		OrganismWeightPipe,
 	],
-	imports: [BrowserModule, CommonModule, HttpClientModule, HttpModule],
+	imports: [BrowserModule, CommonModule, FormsModule, HttpClientModule, HttpModule],
 	providers: [ApiService],
 	bootstrap: [AppComponent]
 })

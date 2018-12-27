@@ -3,13 +3,9 @@
 
 		<div class="search">
 			<form>
-				<input type="text" placeholder="R2-D2, Luke Skywalker, .." />
+				<input type="text" placeholder="R2-D2, Luke Skywalker, .." name="searchValue" [(ngModel)]="searchValue" />
 				<input type="submit" *ngIf="!loading" value="Search" />
 				<input type="submit" *ngIf="loading" value="Loading.." disabled />
-				<!-- <button>
-					<span *ngIf="!loading">Search</span>
-					<span *ngIf="loading">Loading..</span>
-				</button> -->
 			</form>
 		</div>
 
